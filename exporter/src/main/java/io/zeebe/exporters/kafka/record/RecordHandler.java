@@ -20,21 +20,18 @@ import io.zeebe.exporters.kafka.config.RecordsConfig;
 import io.zeebe.protocol.record.Record;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-public class RecordHandler
-    implements RecordTester, RecordTransformer<ProducerRecord<Record, Record>> {
+public class RecordHandler {
   private final RecordsConfig configuration;
 
   public RecordHandler(RecordsConfig configuration) {
     this.configuration = configuration;
   }
 
-  @Override
   public ProducerRecord<Record, Record> transform(Record record) {
     final RecordConfig config = getRecordConfig(record);
     return new ProducerRecord<>(config.topic, record, record);
   }
 
-  @Override
   public boolean test(Record record) {
     final RecordConfig config = getRecordConfig(record);
     return config.allowedTypes.contains(record.getRecordType());
