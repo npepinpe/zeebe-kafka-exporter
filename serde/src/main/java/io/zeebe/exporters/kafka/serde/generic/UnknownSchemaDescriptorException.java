@@ -39,12 +39,4 @@ public class UnknownSchemaDescriptorException extends SchemaDeserializationExcep
   public UnknownSchemaDescriptorException(String descriptorName) {
     super(String.format(DEFAULT_FORMAT, descriptorName));
   }
-
-  public UnknownSchemaDescriptorException(String message, Throwable cause) {
-    super(message, cause);
-  }
-
-  public UnknownSchemaDescriptorException(Throwable cause) {
-    super(cause);
-  }
 }

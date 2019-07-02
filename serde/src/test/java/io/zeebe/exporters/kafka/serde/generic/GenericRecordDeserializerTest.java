@@ -49,6 +49,6 @@ public class GenericRecordDeserializerTest {
 
     // when
     assertThatThrownBy(() -> deserializer.deserialize(topic, new byte[0]))
-        .isInstanceOf(UnsupportedOperationWithoutHeadersException.class);
+        .isInstanceOf(UnsupportedOperationException.class);
   }
 }
