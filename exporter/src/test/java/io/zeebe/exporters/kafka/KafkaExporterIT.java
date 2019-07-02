@@ -47,8 +47,7 @@ public class KafkaExporterIT {
   private static final String TOPIC = "zeebe";
 
   @Rule public RecordingExporterTestWatcher testWatcher = new RecordingExporterTestWatcher();
-  @Rule
-  public KafkaContainer kafkaContainer = new KafkaContainer().withEmbeddedZookeeper();
+  @Rule public KafkaContainer kafkaContainer = new KafkaContainer().withEmbeddedZookeeper();
 
   private TomlConfig exporterConfiguration;
   private ExporterIntegrationRule exporterIntegrationRule;
@@ -107,7 +106,7 @@ public class KafkaExporterIT {
     keyDeserializer.configure(Maps.fromProperties(properties), true);
     valueDeserializer.configure(Maps.fromProperties(properties), false);
     final Consumer<RecordId, GenericRecord> consumer =
-      new KafkaConsumer<>(properties, keyDeserializer, valueDeserializer);
+        new KafkaConsumer<>(properties, keyDeserializer, valueDeserializer);
     consumer.subscribe(Collections.singletonList(TOPIC));
 
     return consumer;
@@ -128,7 +127,7 @@ public class KafkaExporterIT {
   }
 
   private Properties consumerConfig() {
-    Properties properties = new Properties();
+    final Properties properties = new Properties();
     properties.put("auto.commit.interval.ms", "100");
     properties.put("auto.offset.reset", "earliest");
     properties.put("bootstrap.servers", getKafkaServer());
