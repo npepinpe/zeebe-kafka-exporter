@@ -32,6 +32,7 @@ import io.zeebe.test.exporter.ExporterTestHarness;
 import java.time.Duration;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.IntStream;
 import org.apache.kafka.clients.producer.MockProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -186,7 +187,7 @@ public class KafkaExporterTest {
     mockProducerFactory.mockProducer.errorNext(new RuntimeException("failed"));
 
     // then
-    assertThatThrownBy(this::checkInFlightRequests).isInstanceOf(KafkaExporterException.class);
+    assertThatThrownBy(this::checkInFlightRequests).isInstanceOf(ExecutionException.class);
     assertThat(testHarness.getLastUpdatedPosition()).isEqualTo(successful.getPosition());
   }
 
