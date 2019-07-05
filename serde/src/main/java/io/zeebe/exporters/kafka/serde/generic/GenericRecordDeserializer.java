@@ -45,7 +45,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
  */
 public class GenericRecordDeserializer implements Deserializer<GenericRecord> {
   private static final String MISSING_DESCRIPTOR_HEADER_ERROR =
-    "Cannot deserialize GenericRecord instances without specifying the descriptor header";
+      "Cannot deserialize GenericRecord instances without specifying the descriptor header";
 
   private final String schemaDescriptorHeaderKey;
   private final StringDeserializer schemaDescriptorDeserializer;
